@@ -7,7 +7,6 @@ const MegaPower: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
-  const subtitleContainerRef = useRef<HTMLDivElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
   const flagmanRef = useRef<HTMLDivElement>(null);
   const megaImageRef = useRef<HTMLDivElement>(null);
@@ -19,9 +18,7 @@ const MegaPower: React.FC = () => {
     const ctx = gsap.context(() => {
 
       // лучше в стилях всем элемаентам задать фиксированное позиционирование
-        gsap.set(sectionRef.current, {
-          minHeight: '400vh'
-        });
+
         gsap.set(megaImageRef.current, {
           position: "fixed",
           bottom: 'auto',
@@ -66,10 +63,10 @@ const MegaPower: React.FC = () => {
       megaTL.fromTo(titleRef.current, {autoAlpha: 1}, {autoAlpha: 0, duration: .5});
       megaTL.fromTo(subtitleRef.current, {autoAlpha: 0}, {autoAlpha: 1, duration: .5});
       megaTL.fromTo(circleRef.current, {yPercent: 50, y: `${window.innerHeight / 2}`, scale: .7}, {yPercent: 0, y: 0, scale: 10, duration: 6}, '-=1');
-      megaTL.fromTo(megaImageRef.current, {yPercent: 0, autoAlpha: 1}, {yPercent: -40,  duration: 5}, '-=5');
+      megaTL.fromTo(megaImageRef.current, {yPercent: 0, autoAlpha: 1}, {yPercent: -40,  duration: 5}, '-=5.5');
       megaTL.to(subtitleRef.current, {autoAlpha: 0, duration: .5});
       megaTL.fromTo(flagmanRef.current, {autoAlpha: 0}, {autoAlpha: 1, duration: .0001}, '-=.5');
-      megaTL.fromTo(flagmanItems, {autoAlpha: 0}, {autoAlpha: 1, duration: .5, stagger: 1});
+      megaTL.fromTo(flagmanItems, {autoAlpha: 0}, {autoAlpha: 1, duration: 1, stagger: 1});
       
 
 
@@ -81,43 +78,34 @@ const MegaPower: React.FC = () => {
         animation: megaTL,
         scrub: 1, 
         markers: false,
-        // pin: true,
-        pinSpacing: true
+        pinSpacing: false
       });
     });
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className="min-h-screen overflow-hidden bg-white-2"  ref={sectionRef}>
-      <div className="">
-        <div
-          ref={titleRef}
-          className="megaPower-animated-text flex h-[100vh] items-center justify-center text-17xl text-black"
-        >
-          MEGAМОЩЬ
-        </div>
-        <div
-          className="text-center mix-blend-difference"
-          ref={subtitleContainerRef}
-        >
-          <div
-            ref={subtitleRef}
-            className="megaPower-animated-text invisible z-[20] flex h-[100vh] w-screen items-center justify-center text-7.5xl text-white"
-          >
-            в миникорпусе
-          </div>
-        </div>
-        <div className="h-[100vh] w-[100vh]">
-          <div
-            ref={circleRef}
-            className="cir z-[10] m-auto flex h-[20rem] w-[20rem] items-center justify-center rounded-full bg-black text-7.5xl text-white"
-          ></div>
-        </div>
+    // если анимация выполняется слишком быстро или медленно, отрегулируйте минимальную высоту секции
+    <section className="min-h-[400vh] bg-white-2"  ref={sectionRef}>
+      <div
+        ref={titleRef}
+        className="flex h-[100vh] items-center justify-center text-17xl text-black text-center"
+      >
+        MEGAМОЩЬ
       </div>
       <div
+        ref={subtitleRef}
+        className="invisible z-[20] flex h-[100vh] items-center justify-center text-7.5xl text-center text-white mix-blend-difference"
+      >
+        в миникорпусе
+      </div>
+      <div
+        ref={circleRef}
+        className="cir z-[10] m-auto flex h-[20rem] w-[20rem] items-center justify-center rounded-full bg-black text-7.5xl text-white"
+      ></div>
+      <div
         ref={megaImageRef}
-        className="left-px top-px z-[50] m-auto h-screen w-screen invisible"
+        className="left-px top-px z-[50] m-x-auto h-screen w-screen invisible"
       >
         <Image
           layout="fill"
