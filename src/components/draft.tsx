@@ -39,29 +39,35 @@ const MegaPower: React.FC = () => {
       megaTL.to(subtitleRef.current, {autoAlpha: 0, duration: .5});
       megaTL.fromTo(flagmanItems, {autoAlpha: 0}, {autoAlpha: 1, duration: 1, stagger: 1});
 
-      megaTL.to(megaImageRef.current, {yPercent: -50, top: '50%', scale: 2,  duration: 1});
-      megaTL.to(flagmanItems, {autoAlpha: 0, duration: .5}, '-=1');
+      megaTL.to(megaImageRef.current, {yPercent: -50, top: '50%', scale: 2,  duration: 4});
+      megaTL.to(flagmanItems, {autoAlpha: 0, duration: 1.2}, '-=4');
       
-      megaTL.fromTo(filterRef.current, {autoAlpha: 0}, {autoAlpha: 1, duration: 1}, '-=.9');
-      megaTL.fromTo(filterListRef.current, {yPercent: 100}, {yPercent: 0, duration: 1}, '-=.5');
-      // '-=.4
+      megaTL.fromTo(filterRef.current, {autoAlpha: 0}, {autoAlpha: 1, duration: 1}, '-=3');
+      megaTL.fromTo(filterListRef.current, {yPercent: 100}, {yPercent: 0, duration: 3}, '-=2');
+
+      megaTL.fromTo(titleRef.current, {}, {duration: 1});
+
+      megaTL.to(megaImageRef.current, {scale: 1,  duration: 3});
+      megaTL.fromTo(blurRef.current, {autoAlpha: 0}, {autoAlpha: 1, duration: 3}, '-=3');
+      megaTL.to(filterRef.current, {autoAlpha: 0, duration: .3}, '-=3');
+
+      megaTL.fromTo(firstBlurListRef.current, {autoAlpha: 0, yPercent: 20}, {autoAlpha: 1, yPercent: 0, duration: 3}, '-=2');
+      
       megaTL.fromTo(titleRef.current, {}, {duration: .3});
 
-      megaTL.to(megaImageRef.current, {scale: 1,  duration: 1});
-      megaTL.fromTo(blurRef.current, {autoAlpha: 0}, {autoAlpha: 1, duration: 1}, '-=1');
-      megaTL.to(filterRef.current, {autoAlpha: 0, duration: .3}, '-=1');
-
-      megaTL.fromTo(firstBlurListRef.current, {autoAlpha: 0, yPercent: 20}, {autoAlpha: 1, yPercent: 0, duration: 1}, '-=.9');
       megaTL.to(firstBlurListRef.current, {autoAlpha: 0, yPercent: 0, duration: .3});
-      megaTL.fromTo(secondBlurListRef.current, {autoAlpha: 0}, {autoAlpha: 1, yPercent: 0, duration: 1}, '-=.1');
-      megaTL.to(secondBlurListRef.current, {autoAlpha: 0, duration: .3});
-      megaTL.fromTo(thirdBlurListRef.current, {autoAlpha: 0}, {autoAlpha: 1, yPercent: 0, duration: 1}, '-=.1');
-      
-      // megaTL.fromTo(titleRef.current, {}, {duration: .3});
+      megaTL.fromTo(secondBlurListRef.current, {autoAlpha: 0}, {autoAlpha: 1, yPercent: 0, duration: 3}, '-=.3');
 
-      megaTL.fromTo(beautyWrapRef.current, {autoAlpha: 0}, {autoAlpha: 1, duration: 1});
-      megaTL.to(megaImageRef.current, {scale: 1.2,  duration: 1}, '-=1');
-      megaTL.to(blurRef.current,{autoAlpha: 0, duration: .7}, '-=.7');
+      megaTL.fromTo(titleRef.current, {}, {duration: .3});
+
+      megaTL.to(secondBlurListRef.current, {autoAlpha: 0, duration: .3});
+      megaTL.fromTo(thirdBlurListRef.current, {autoAlpha: 0}, {autoAlpha: 1, yPercent: 0, duration: 3}, '-=.3');
+      
+      megaTL.fromTo(titleRef.current, {}, {duration: .3});
+
+      megaTL.fromTo(beautyWrapRef.current, {autoAlpha: 0}, {autoAlpha: 1, duration: 2});
+      megaTL.to(megaImageRef.current, {scale: 1.2,  duration: 2}, '-=2');
+      megaTL.to(blurRef.current,{autoAlpha: 0, duration: 1}, '-=.7');
       megaTL.fromTo(beautyItems, {autoAlpha: 0}, {autoAlpha: 1, duration: 1, stagger: 1});
       
 
@@ -84,7 +90,7 @@ const MegaPower: React.FC = () => {
 
   return (
     // если анимация выполняется слишком быстро или медленно, отрегулируйте минимальную высоту секции
-    <section className="min-h-[600vh] bg-white-2"  ref={sectionRef}>
+    <section className="min-h-[800vh] bg-white-2"  ref={sectionRef}>
       <div className="sticky top-0 flex h-[100vh] min-h-[100vh] overflow-clip bg-white" ref={pinnedRef}>
         <div
           ref={circleRef}
